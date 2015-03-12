@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["i.vasilevskiy@fun-box.ru"]
 
   spec.summary       = 'Checks Atlassian Stash pull requests and comments on issues in added code'
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = 'https://github.com/vassilevsky/face_control'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
