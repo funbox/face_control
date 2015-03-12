@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["i.vasilevskiy"]
   spec.email         = ["i.vasilevskiy@fun-box.ru"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
+  spec.summary       = 'Checks Atlassian Stash pull requests and comments on issues in added code'
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
