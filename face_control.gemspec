@@ -6,8 +6,8 @@ require 'face_control/version'
 Gem::Specification.new do |spec|
   spec.name          = 'face_control'
   spec.version       = FaceControl::VERSION
-  spec.authors       = ['i.vasilevskiy']
-  spec.email         = ['i.vasilevskiy@fun-box.ru']
+  spec.authors       = ['Ilya Vassilevsky']
+  spec.email         = ['vassilevsky@gmail.com']
 
   spec.summary       = 'Checks Atlassian Stash pull requests and comments on issues in added code'
   spec.homepage      = 'https://github.com/vassilevsky/face_control'
