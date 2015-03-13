@@ -1,39 +1,21 @@
-# FaceControl
+# Face Control
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/face_control`. To experiment with that code, run `bin/console` for an interactive prompt.
+Comment on added lines of pull requests in [Atlassian Stash](https://www.atlassian.com/software/stash).
+Take comments from static checkers reports.
+(Currently supports [RuboCop](http://batsov.com/rubocop/) and [CoffeeLint](http://www.coffeelint.org).)
 
-TODO: Delete this and the text above, and describe your gem
+Inspired by [Hound](https://houndci.com).
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'face_control'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install face_control
+    gem install face_control
 
 ## Usage
 
-TODO: Write usage instructions here
+    rubocop -f json -o rubocop.json
+    coffeelint --reporter raw app/assets/javascripts > coffeelint_report.json
+    face-control <project> <repository> <pull_request_id>
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/face_control/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+`face-control` uses the same configuration file (`~/.stashconfig.yml`)
+as the official [Atlassian Stash Command Line Tools](https://bitbucket.org/atlassian/stash-command-line-tools)
+to connect to your Stash instance.

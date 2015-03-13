@@ -1,0 +1,8 @@
+Check a pull request in Stash and comment on added lines with issues
+
+Usage:
+  face-control <project> <repository> <pull_request_id>
+  face-control -h | --help
+
+Options:
+  -h --help     Show this screen.

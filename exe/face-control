@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require 'docopt'
+require 'face_control/inputs/rubocop_json'
+require 'face_control/inputs/coffeelint_raw'
+require 'logger'
+require 'stash/config'
+require 'stash/server'
+
+begin
+  USAGE = "#{File.dirname(__FILE__)}/../USAGE"
+  args = Docopt.docopt(File.read(USAGE))
+
+  project         = args['<project>']
+  repository      = args['<repository>']
+  pull_request_id = args['<pull_request_id>']
+
+  config = Stash::Config.new
+  server = Stash::Server.new(config.host, config.user, config.password, Logger.new(STDOUT))
+  repository = server.repository(project, repository)
+  pull_request = repository.pull_request(pull_request_id)
+
+  [Inputs::RubocopJson, Inputs::CoffeeLintRaw].each do |input_class|
+    input = input_class.new
+    input.comments.each do |comment|
+      pull_request.add_comment(comment.file, comment.line, comment.text)
+    end
+  end
+rescue Docopt::Exit => e
+  puts e.message
+end
