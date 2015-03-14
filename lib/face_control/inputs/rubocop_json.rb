@@ -1,5 +1,5 @@
 require 'json'
-require 'comment'
+require 'face_control/comment'
 
 module FaceControl
   module Inputs

@@ -1,5 +1,3 @@
 require 'face_control/version'
-
-module FaceControl
-  # Your code goes here...
-end
+require 'face_control/comment'
+require 'face_control/inputs'

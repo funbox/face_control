@@ -1,11 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'docopt'
-require 'face_control/inputs/rubocop_json'
-require 'face_control/inputs/coffeelint_raw'
 require 'logger'
-require 'stash/config'
-require 'stash/server'
+require 'docopt'
+require 'face_control'
+require 'stash'
 
 begin
   USAGE = "#{File.dirname(__FILE__)}/../USAGE"
