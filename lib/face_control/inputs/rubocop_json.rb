@@ -4,9 +4,10 @@ require 'face_control/comment'
 module FaceControl
   module Inputs
     class RubocopJson
-      attr_accessor :filename
+      attr_accessor :ignored_severities, :filename
 
-      def initialize(filename = 'rubocop.json')
+      def initialize(ignored_severities = [], filename = 'rubocop.json')
+        self.ignored_severities = ignored_severities
         self.filename = filename
 
         fail "#{filename} does not exist" unless File.exist?(filename)
@@ -14,7 +15,9 @@ module FaceControl
 
       def comments
         report['files'].map do |file|
-          file['offenses'].map do |offense|
+          file['offenses'].reject do |offense|
+            ignored_severities.include?(offense['severity'])
+          end.map do |offense|
             Comment.new(
               file: file['path'],
               line: offense['location']['line'],

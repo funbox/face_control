@@ -1,8 +1,8 @@
 Check a pull request in Stash and comment on added lines with issues
 
 Usage:
-  face-control <project> <repository> <pull_request_id>
-  face-control -h | --help
+  face-control [options] <project> <repository> <pull_request_id>
 
 Options:
-  -h --help     Show this screen.
+  -h --help                                  Show this screen.
+  -S <severity>, --skip-severity <severity>  Skip RuboCop offenses with this severity.
