@@ -21,7 +21,7 @@ module FaceControl
             Comment.new(
               file: file['path'],
               line: offense['location']['line'],
-              text: offense['message']
+              text: text(offense)
             )
           end
         end.flatten
@@ -31,6 +31,10 @@ module FaceControl
 
       def report
         JSON.parse(File.read(filename))
+      end
+
+      def text(offense)
+        offense['message']
       end
     end
   end
