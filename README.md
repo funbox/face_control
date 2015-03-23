@@ -19,3 +19,7 @@ Inspired by [Hound](https://houndci.com).
 `face-control` uses the same configuration file (`~/.stashconfig.yml`)
 as the official [Atlassian Stash Command Line Tools](https://bitbucket.org/atlassian/stash-command-line-tools)
 to connect to your Stash instance.
+
+## Etymology
+
+[Face control](http://en.wikipedia.org/wiki/Face_control) in Wikipedia
