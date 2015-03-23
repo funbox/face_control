@@ -1,4 +1,5 @@
 require 'json'
+require 'rubocop'
 require 'face_control/comment'
 
 module FaceControl
@@ -34,7 +35,19 @@ module FaceControl
       end
 
       def text(offense)
-        offense['message']
+        text = offense['message']
+
+        if (link = style_guide_url(offense))
+          text << " — [Guide](#{link})"
+        end
+
+        text
+      end
+
+      def style_guide_url(offense)
+        cop_name = offense['cop_name']
+        cop_config = RuboCop::ConfigLoader.default_configuration[cop_name]
+        cop_config['StyleGuide']
       end
     end
   end
