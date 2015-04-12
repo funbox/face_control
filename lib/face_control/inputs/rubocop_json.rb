@@ -22,7 +22,7 @@ module FaceControl
             Comment.new(
               file: file['path'],
               line: offense['location']['line'],
-              text: text(offense)
+              text: text(offense, file)
             )
           end
         end.flatten
@@ -34,11 +34,15 @@ module FaceControl
         JSON.parse(File.read(filename))
       end
 
-      def text(offense)
+      def text(offense, file)
         text = offense['message']
 
         if (link = style_guide_url(offense))
           text << " — [Guide](#{link})"
+        end
+
+        if can_be_autocorrected?(offense)
+          text << " (Run `rubocop -a #{file['path']}` to fix.)"
         end
 
         text
@@ -48,6 +52,10 @@ module FaceControl
         cop_name = offense['cop_name']
         cop_config = RuboCop::ConfigLoader.default_configuration[cop_name]
         cop_config['StyleGuide']
+      end
+
+      def can_be_autocorrected?(offense)
+        !offense['corrected'].nil?
       end
     end
   end
