@@ -8,9 +8,6 @@ Style/FileName:
   Exclude:
     - exe/*
 
-Style/RegexpLiteral:
-  MaxSlashes: 0
-
 Style/SpaceBeforeBlockBraces:
   EnforcedStyle: no_space
 
