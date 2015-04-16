@@ -1,10 +1,10 @@
 # Face Control
 
-Comment on added lines of pull requests in [Atlassian Stash](https://www.atlassian.com/software/stash).
+Comment on added lines of pull requests in [Atlassian Stash][].
 Take comments from static checkers reports.
-(Currently supports [RuboCop](http://batsov.com/rubocop/) and [CoffeeLint](http://www.coffeelint.org).)
+(Currently supports [RuboCop][] and [CoffeeLint][].)
 
-Inspired by [Hound](https://houndci.com).
+Inspired by [Hound][].
 
 ## Installation
 
@@ -17,9 +17,16 @@ Inspired by [Hound](https://houndci.com).
     face-control <project> <repository> <pull_request_id>
 
 `face-control` uses the same configuration file (`~/.stashconfig.yml`)
-as the official [Atlassian Stash Command Line Tools](https://bitbucket.org/atlassian/stash-command-line-tools)
+as the official [Atlassian Stash Command Line Tools][]
 to connect to your Stash instance.
 
 ## Etymology
 
-[Face control](http://en.wikipedia.org/wiki/Face_control) in Wikipedia
+[Face control][] in Wikipedia
+
+[Hound]: https://houndci.com
+[Atlassian Stash]: https://www.atlassian.com/software/stash
+[Atlassian Stash Command Line Tools]: https://bitbucket.org/atlassian/stash-command-line-tools
+[RuboCop]: http://batsov.com/rubocop/
+[CoffeeLint]: http://www.coffeelint.org
+[Face control]: http://en.wikipedia.org/wiki/Face_control
