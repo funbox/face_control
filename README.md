@@ -47,6 +47,16 @@ For example, here's a [Jenkins][] project setup:
             coffeelint --reporter raw app/assets/javascripts > coffeelint_report.json || true
             face-control <project> <repository> $PULL_REQUEST_ID
 
+If you don't want to receive RuboCop comments with certain severity level,
+pass the severity in the `--skip-severity` option like so:
+
+    face-control --skip-severity convention <project> <repository> <pull_request_id>
+
+You can use just `-S`.
+You can also pass multiple severity levels as a comma-separated list:
+
+    face-control -S convention,refactor <project> <repository> <pull_request_id>
+
 `face-control` uses the same configuration file (`~/.stashconfig.yml`)
 as the official [Atlassian Stash Command Line Tools][]
 to connect to your Stash instance.
