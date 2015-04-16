@@ -16,6 +16,37 @@ Inspired by [Hound][].
     coffeelint --reporter raw app/assets/javascripts > coffeelint_report.json
     face-control <project> <repository> <pull_request_id>
 
+It's natural to run this on a continuous integration server.
+For example, here's a [Jenkins][] project setup:
+
+* Source Code Management
+  * Git
+    * Repositories
+      * Refspec:
+
+              +refs/pull-requests/*:refs/remotes/origin/pull-requests/*
+
+        (make Jenkins fetch otherwise ignored Stash-created branches)
+
+    * Branches to build
+      * Branch Specifier:
+
+              origin/pull-requests/*/merge
+
+        (merge results of open non-conflicting pull requests)
+
+* Build
+  * Execute shell
+    * Command
+
+            export PULL_REQUEST_ID=`echo $GIT_BRANCH | cut -d / -f 3`
+            gem install rubocop face_control
+            npm install -g coffeelint
+
+            rubocop -f json -o rubocop.json || true
+            coffeelint --reporter raw app/assets/javascripts > coffeelint_report.json || true
+            face-control <project> <repository> $PULL_REQUEST_ID
+
 `face-control` uses the same configuration file (`~/.stashconfig.yml`)
 as the official [Atlassian Stash Command Line Tools][]
 to connect to your Stash instance.
@@ -29,4 +60,5 @@ to connect to your Stash instance.
 [Atlassian Stash Command Line Tools]: https://bitbucket.org/atlassian/stash-command-line-tools
 [RuboCop]: http://batsov.com/rubocop/
 [CoffeeLint]: http://www.coffeelint.org
+[Jenkins]: http://jenkins-ci.org
 [Face control]: http://en.wikipedia.org/wiki/Face_control
