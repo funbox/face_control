@@ -15,7 +15,7 @@ module Stash
         @added_lines ||= {}
         @added_lines[file] ||= begin
           file_diff(file)['hunks'].map do |hunk|
-            hunk['segments'].select{ |segment| segment['type'] == 'ADDED' }.map do |segment|
+            hunk['segments'].select{|segment| segment['type'] == 'ADDED' }.map do |segment|
               segment['lines'].map do |line|
                 line['destination']
               end
@@ -25,7 +25,7 @@ module Stash
       end
 
       def file_diff(file)
-        @diff['diffs'].detect{ |diff| diff['destination'] && diff['destination']['toString'] == file } || {'hunks' => []}
+        @diff['diffs'].detect{|diff| diff['destination'] && diff['destination']['toString'] == file } || {'hunks' => []}
       end
     end
   end
