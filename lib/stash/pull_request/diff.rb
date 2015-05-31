@@ -1,8 +1,8 @@
 module Stash
   class PullRequest
     class Diff
-      def initialize(raw_diff)
-        @raw_diff = raw_diff
+      def initialize(diff)
+        @diff = diff
       end
 
       def added_line?(file, line)
@@ -25,7 +25,7 @@ module Stash
       end
 
       def file_diff(file)
-        @raw_diff['diffs'].detect{ |diff| diff['destination'] && diff['destination']['toString'] == file } || {'hunks' => []}
+        @diff['diffs'].detect{ |diff| diff['destination'] && diff['destination']['toString'] == file } || {'hunks' => []}
       end
     end
   end
