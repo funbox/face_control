@@ -13,6 +13,7 @@ begin
   repository      = args['<repository>']
   pull_request_id = args['<pull_request_id>']
 
+  ignored_severities = []
   if args['--skip-severity']
     ignored_severities = args['--skip-severity'].split(',')
     puts "Skipping RuboCop offenses with severities: #{ignored_severities.join(', ')}."
