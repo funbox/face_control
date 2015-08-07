@@ -1,3 +1,6 @@
+[![Vexor](https://ci.vexor.io/projects/126da196-c8e6-46f0-8bc7-b5f8f4b49732/status.svg)](https://ci.vexor.io/ui/projects/126da196-c8e6-46f0-8bc7-b5f8f4b49732/builds)
+[![Coveralls](https://img.shields.io/coveralls/vassilevsky/face_control.svg)](https://coveralls.io/github/vassilevsky/face_control)
+
 # Face Control
 
 Comment on added lines of pull requests in [Atlassian Stash][].
