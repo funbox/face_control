@@ -1,0 +1,1 @@
+* Warn if RuboCop version is too old (cannot reliably determine if an offense can be corrected automatically)
