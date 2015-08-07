@@ -23,14 +23,13 @@ begin
   server = Stash::Server.new(config.host, config.user, config.password, Logger.new(STDOUT))
   repository = server.repository(project, repository)
   pull_request = repository.pull_request(pull_request_id)
+  filenames = pull_request.filenames_with_added_lines
 
   [
-    FaceControl::Inputs::RubocopJson.new(ignored_severities),
-    FaceControl::Inputs::CoffeeLintRaw.new
-  ].each do |input|
-    input.comments.each do |comment|
-      pull_request.add_comment(comment.file, comment.line, comment.text)
-    end
+    FaceControl::CheckerRunner.new(FaceControl::Checkers::RuboCop, filenames, ignored_severities: ignored_severities),
+    FaceControl::CheckerRunner.new(FaceControl::Checkers::CoffeeLint, filenames)
+  ].map(&:comments).flatten.each do |comment|
+    pull_request.add_comment(comment.file, comment.line, comment.text)
   end
 rescue Docopt::Exit => e
   puts e.message

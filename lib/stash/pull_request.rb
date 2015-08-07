@@ -9,6 +9,10 @@ module Stash
       self.id = id
     end
 
+    def filenames_with_added_lines
+      diff.filenames_with_added_lines
+    end
+
     def add_comment(file, line, text)
       return unless diff.added_line?(file, line)
       return if already_commented?(file, line, text)
