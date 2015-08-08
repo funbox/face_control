@@ -1,6 +1,4 @@
-require 'json'
 require 'test_helper'
-require 'stash/pull_request/diff'
 
 class DiffTest < Minitest::Test
   def setup

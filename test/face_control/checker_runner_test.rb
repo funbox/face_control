@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'face_control/checker_runner'
 
 class TestChecker
   def relevant_globs
