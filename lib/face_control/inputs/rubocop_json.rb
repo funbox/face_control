@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'json'
 require 'rubocop'
 require 'face_control/comment'
