@@ -64,8 +64,7 @@ module FaceControl
       @pull_request ||= begin
         config = Stash::Config.new
         server = Stash::Server.new(config.host, config.user, config.password, logger)
-        repository = server.repository(project, repository)
-        repository.pull_request(pull_request_id)
+        server.pull_request(project, repository, pull_request_id)
       end
     end
   end

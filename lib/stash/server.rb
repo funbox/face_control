@@ -1,31 +1,31 @@
 require 'httparty'
-require 'stash/repository'
+require 'stash/pull_request'
 
 module Stash
   class Server
     attr_accessor :root_uri, :user, :password, :logger
 
-    def initialize(root_uri, user, password, logger = nil)
+    def initialize(root_uri, user, password, logger)
       self.root_uri = root_uri
       self.user = user
       self.password = password
       self.logger = logger
+
+      @pull_requests = {}
     end
 
-    def repository(project_key, repository_slug)
-      key = "#{project_key}/#{repository_slug}"
-      @repositories      ||= {}
-      @repositories[key] ||= Repository.new(self, project_key, repository_slug)
+    def pull_request(project, repo, id)
+      @pull_requests["#{project}/#{repo}/#{id}"] ||= PullRequest.new(self, project, repo, id)
     end
 
     def get(path)
-      logged('Response') do
+      log_as('Response') do
         HTTParty.get(endpoint + path, auth.merge(logging))
       end
     end
 
     def post(path, data)
-      logged('Response') do
+      log_as('Response') do
         HTTParty.post(endpoint + path, auth.merge(content_type).merge(body: data.to_json).merge(logging))
       end
     end
@@ -53,25 +53,17 @@ module Stash
       }
     end
 
-    def logged(label)
-      if logger
-        result = yield
-        logger.debug("#{label}:\n#{result}")
-        result
-      else
-        yield
-      end
+    def log_as(label)
+      result = yield
+      logger.debug("#{label}:\n#{result}")
+      result
     end
 
     def logging
-      if logger
-        {
-          logger: logger,
-          log_level: :debug
-        }
-      else
-        {}
-      end
+      {
+        logger: logger,
+        log_level: :debug
+      }
     end
   end
 end

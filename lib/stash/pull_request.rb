@@ -2,11 +2,11 @@ require 'stash/pull_request/diff'
 
 module Stash
   class PullRequest
-    attr_accessor :repository, :id
-
-    def initialize(repository, id)
-      self.repository = repository
-      self.id = id
+    def initialize(server, project, repo, id)
+      @server = server
+      @project = project
+      @repo = repo
+      @id = id
     end
 
     def filenames_with_added_lines
@@ -52,19 +52,19 @@ module Stash
     end
 
     def get(path)
-      repository.get(endpoint + path)
+      @server.get(endpoint + path)
     end
 
     def post(path, data)
-      repository.post(endpoint + path, data)
+      @server.post(endpoint + path, data)
     end
 
     def endpoint
-      "/pull-requests/#{id}"
+      "/projects/#{@project}/repos/#{@repo}/pull-requests/#{@id}"
     end
 
     def logger
-      repository.logger
+      @server.logger
     end
   end
 end
