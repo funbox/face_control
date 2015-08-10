@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DiffTest < Minitest::Test
   def setup
-    diff = JSON.parse(File.read('test/fixtures/add-several-file-types.json'))
+    diff = JSON.parse(File.read('test/fixtures/diff.json'))
     @diff = Stash::PullRequest::Diff.new(diff)
   end
 

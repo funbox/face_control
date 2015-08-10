@@ -11,7 +11,7 @@ class PullRequestTest < Minitest::Test
     @pull_request = repository.pull_request(13)
 
     stub_request(:get, "#{PULL_REQUEST_ENDPOINT}/diff?withComments=false")
-      .to_return(status: 200, headers: HEADERS, body: File.read('test/fixtures/add-several-file-types.json'))
+      .to_return(status: 200, headers: HEADERS, body: File.read('test/fixtures/diff.json'))
     stub_request(:get, "#{PULL_REQUEST_ENDPOINT}/comments?path=Gemfile").to_return(status: 200, headers: HEADERS, body: '{"values": []}')
     stub_request(:post, "#{PULL_REQUEST_ENDPOINT}/comments").to_return(status: 200, headers: HEADERS, body: '{}')
   end
