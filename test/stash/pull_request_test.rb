@@ -22,5 +22,12 @@ class PullRequestTest < Minitest::Test
 
   def test_add_comment
     @pull_request.add_comment('Gemfile', 3, 'This line is unnecessary.')
+
+    assert_requested(
+      :post,
+      "#{PULL_REQUEST_ENDPOINT}/comments",
+      headers: HEADERS,
+      body: '{"text":"This line is unnecessary.","anchor":{"path":"Gemfile","line":3,"lineType":"ADDED"}}'
+    )
   end
 end
