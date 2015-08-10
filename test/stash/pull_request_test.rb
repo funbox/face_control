@@ -12,8 +12,12 @@ class PullRequestTest < Minitest::Test
 
     stub_request(:get, "#{PULL_REQUEST_ENDPOINT}/diff?withComments=false")
       .to_return(status: 200, headers: HEADERS, body: File.read('test/fixtures/diff.json'))
-    stub_request(:get, "#{PULL_REQUEST_ENDPOINT}/comments?path=Gemfile").to_return(status: 200, headers: HEADERS, body: '{"values": []}')
-    stub_request(:post, "#{PULL_REQUEST_ENDPOINT}/comments").to_return(status: 200, headers: HEADERS, body: '{}')
+
+    stub_request(:get, "#{PULL_REQUEST_ENDPOINT}/comments?path=Gemfile")
+      .to_return(status: 200, headers: HEADERS, body: '{"values": []}')
+
+    stub_request(:post, "#{PULL_REQUEST_ENDPOINT}/comments")
+      .to_return(status: 200, headers: HEADERS, body: '{}')
   end
 
   def test_add_comment
