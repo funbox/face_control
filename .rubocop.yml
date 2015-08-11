@@ -11,5 +11,8 @@ Style/FileName:
 Style/SpaceBeforeBlockBraces:
   EnforcedStyle: no_space
 
+Style/SpaceInsideBlockBraces:
+  SpaceBeforeBlockParameters: false
+
 Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space

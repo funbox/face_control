@@ -1,37 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'logger'
-require 'docopt'
 require 'face_control'
-require 'stash'
 
-begin
-  USAGE = "#{File.dirname(__FILE__)}/../USAGE"
-  args = Docopt.docopt(File.read(USAGE))
-
-  project         = args['<project>']
-  repository      = args['<repository>']
-  pull_request_id = args['<pull_request_id>']
-
-  ignored_severities = []
-  if args['--skip-severity']
-    ignored_severities = args['--skip-severity'].split(',')
-    puts "Skipping RuboCop offenses with severities: #{ignored_severities.join(', ')}."
-  end
-
-  config = Stash::Config.new
-  server = Stash::Server.new(config.host, config.user, config.password, Logger.new(STDOUT))
-  repository = server.repository(project, repository)
-  pull_request = repository.pull_request(pull_request_id)
-
-  [
-    FaceControl::Inputs::RubocopJson.new(ignored_severities),
-    FaceControl::Inputs::CoffeeLintRaw.new
-  ].each do |input|
-    input.comments.each do |comment|
-      pull_request.add_comment(comment.file, comment.line, comment.text)
-    end
-  end
-rescue Docopt::Exit => e
-  puts e.message
-end
+FaceControl::CLI.new.run

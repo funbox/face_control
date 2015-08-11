@@ -2,10 +2,10 @@ module FaceControl
   class Comment
     attr_accessor :file, :line, :text
 
-    def initialize(file:, line:, text:)
-      self.file = file
-      self.line = line
-      self.text = text
+    def initialize(options)
+      self.file = options.fetch(:file)
+      self.line = options.fetch(:line)
+      self.text = options.fetch(:text)
     end
   end
 end

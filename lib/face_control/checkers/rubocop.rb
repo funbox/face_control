@@ -1,21 +1,31 @@
+# encoding: UTF-8
+
 require 'json'
 require 'rubocop'
 require 'face_control/comment'
 
 module FaceControl
-  module Inputs
-    class RubocopJson
-      attr_accessor :ignored_severities, :filename
+  module Checkers
+    class RuboCop
+      attr_writer :options
 
-      def initialize(ignored_severities = [], filename = 'rubocop.json')
-        self.ignored_severities = ignored_severities
-        self.filename = filename
-
-        fail "#{filename} does not exist" unless File.exist?(filename)
+      def relevant_globs
+        %w(
+          *.rb
+          *.rake
+          Capfile
+          Gemfile
+          Rakefile
+          Vagrantfile
+        )
       end
 
-      def comments
-        report['files'].map do |file|
+      def command(filenames)
+        "rubocop --format json #{filenames}"
+      end
+
+      def parse(command_output)
+        JSON.parse(command_output)['files'].map do |file|
           file['offenses'].reject do |offense|
             ignored_severities.include?(offense['severity'])
           end.map do |offense|
@@ -25,13 +35,13 @@ module FaceControl
               text: text(offense, file)
             )
           end
-        end.flatten
+        end
       end
 
       private
 
-      def report
-        JSON.parse(File.read(filename))
+      def ignored_severities
+        @options.fetch(:ignored_severities, [])
       end
 
       def text(offense, file)
@@ -50,7 +60,7 @@ module FaceControl
 
       def style_guide_url(offense)
         cop_name = offense['cop_name']
-        cop_config = RuboCop::ConfigLoader.default_configuration[cop_name]
+        cop_config = ::RuboCop::ConfigLoader.default_configuration[cop_name]
         cop_config['StyleGuide']
       end
 
