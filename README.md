@@ -1,3 +1,6 @@
+[![Vexor](https://ci.vexor.io/projects/126da196-c8e6-46f0-8bc7-b5f8f4b49732/status.svg)](https://ci.vexor.io/ui/projects/126da196-c8e6-46f0-8bc7-b5f8f4b49732/builds)
+[![Coveralls](https://img.shields.io/coveralls/vassilevsky/face_control.svg)](https://coveralls.io/github/vassilevsky/face_control)
+
 # Face Control
 
 Comment on added lines of pull requests in [Atlassian Stash][].
@@ -12,8 +15,6 @@ Inspired by [Hound][].
 
 ## Usage
 
-    rubocop -f json -o rubocop.json
-    coffeelint --reporter raw app/assets/javascripts > coffeelint_report.json
     face-control <project> <repository> <pull_request_id>
 
 It's natural to run this on a continuous integration server.
@@ -43,8 +44,6 @@ For example, here's a [Jenkins][] project setup:
             gem install rubocop face_control
             npm install -g coffeelint
 
-            rubocop -f json -o rubocop.json || true
-            coffeelint --reporter raw app/assets/javascripts > coffeelint_report.json || true
             face-control <project> <repository> $PULL_REQUEST_ID
 
 If you don't want to receive RuboCop comments with certain severity level,
