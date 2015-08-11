@@ -41,6 +41,7 @@ For example, here's a [Jenkins][] project setup:
     * Command
 
             export PULL_REQUEST_ID=`echo $GIT_BRANCH | cut -d / -f 3`
+
             gem install rubocop face_control
             npm install -g coffeelint
 
