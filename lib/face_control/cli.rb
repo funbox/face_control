@@ -15,7 +15,7 @@ module FaceControl
       comments = check(pull_request, ignored_severities, logger)
       return if comments.empty?
 
-      logger.info("Posting #{comments.size} comments...")
+      logger.info("#{comments.size} comments have been created. Posting only those for added lines...")
       add_comments(pull_request, comments)
     end
 
