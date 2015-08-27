@@ -29,7 +29,7 @@ module FaceControl
           mode = fields.first
           file = fields.last
 
-          if mode != '-rwxr-xr-x'
+          unless mode == '-rwxr-xr-x'
             Comment.new(file: file, line: 1, text: 'Invalid file mode')
           end
         end
