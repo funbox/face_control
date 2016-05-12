@@ -12,7 +12,10 @@ module FaceControl
     def comments
       return [] if relevant_filenames.empty?
 
-      @checker.parse(`#{@checker.command(relevant_filenames.join(' '))}`)
+      report = `#{@checker.command(relevant_filenames.join(' '))}`
+      return [] if report.strip.empty?
+
+      @checker.parse(report)
     end
 
     private
