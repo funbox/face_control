@@ -18,6 +18,8 @@ module FaceControl
     private
 
     def relevant_filenames
+      return @filenames unless @checker.respond_to?(:relevant_globs)
+
       @relevant_filenames ||= @checker.relevant_globs.map do |glob|
         @filenames.select do |filename|
           File.fnmatch?(glob, filename)
