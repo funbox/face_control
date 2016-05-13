@@ -1,6 +1,6 @@
 Gem::Specification.new do |spec|
   spec.name          = 'face_control'
-  spec.version       = '0.8.1'
+  spec.version       = '0.8.2'
   spec.authors       = ['Ilya Vassilevsky']
   spec.email         = ['vassilevsky@gmail.com']
 
