@@ -61,7 +61,7 @@ module FaceControl
 
       def style_guide_url(offense)
         cop_name = offense['cop_name']
-        cop_config = ::RuboCop::ConfigLoader.default_configuration[cop_name]
+        cop_config = ::RuboCop::ConfigLoader.default_configuration[cop_name] || {}
         cop_config['StyleGuide']
       end
 
