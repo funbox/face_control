@@ -28,7 +28,8 @@ module FaceControl
 
       checkers = [
         FaceControl::CheckerRunner.new(FaceControl::Checkers::RuboCop, filenames, ignored_severities: ignored_severities),
-        FaceControl::CheckerRunner.new(FaceControl::Checkers::CoffeeLint, filenames)
+        FaceControl::CheckerRunner.new(FaceControl::Checkers::CoffeeLint, filenames),
+        FaceControl::CheckerRunner.new(FaceControl::Checkers::Comments, filenames)
       ]
 
       checkers.map(&:comments).flatten
