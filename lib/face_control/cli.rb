@@ -15,7 +15,7 @@ module FaceControl
       comments = check(pull_request, ignored_severities, logger)
       return if comments.empty?
 
-      logger.info("Posting #{comments.size} comments...")
+      logger.info("#{comments.size} comments have been created. Posting only those for added lines...")
       add_comments(pull_request, comments)
     end
 
@@ -28,7 +28,8 @@ module FaceControl
 
       checkers = [
         FaceControl::CheckerRunner.new(FaceControl::Checkers::RuboCop, filenames, ignored_severities: ignored_severities),
-        FaceControl::CheckerRunner.new(FaceControl::Checkers::CoffeeLint, filenames)
+        FaceControl::CheckerRunner.new(FaceControl::Checkers::CoffeeLint, filenames),
+        FaceControl::CheckerRunner.new(FaceControl::Checkers::Comments, filenames)
       ]
 
       checkers.map(&:comments).flatten

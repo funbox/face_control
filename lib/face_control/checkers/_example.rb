@@ -7,6 +7,7 @@ module FaceControl
       # Define only if you use @options in the following methods
       attr_writer :options
 
+      # @optional
       # @return [Array<String>] Shell globs to filter only files relevant to this checker
       #                         out of all files with added lines in the pull request
       def relevant_globs
@@ -29,7 +30,7 @@ module FaceControl
           mode = fields.first
           file = fields.last
 
-          if mode != '-rwxr-xr-x'
+          unless mode == '-rwxr-xr-x'
             Comment.new(file: file, line: 1, text: 'Invalid file mode')
           end
         end

@@ -1,5 +1,8 @@
+[![Gem Version](https://img.shields.io/gem/v/face_control.svg)](https://rubygems.org/gems/face_control)
+[![Code Climate](https://img.shields.io/codeclimate/github/vassilevsky/face_control.svg)](https://codeclimate.com/github/vassilevsky/face_control/code)
 [![Vexor](https://ci.vexor.io/projects/126da196-c8e6-46f0-8bc7-b5f8f4b49732/status.svg)](https://ci.vexor.io/ui/projects/126da196-c8e6-46f0-8bc7-b5f8f4b49732/builds)
 [![Coveralls](https://img.shields.io/coveralls/vassilevsky/face_control.svg)](https://coveralls.io/github/vassilevsky/face_control)
+[![VersionEye](https://img.shields.io/versioneye/d/ruby/face_control.svg)](https://www.versioneye.com/ruby/face_control)
 
 # Face Control
 
@@ -41,6 +44,7 @@ For example, here's a [Jenkins][] project setup:
     * Command
 
             export PULL_REQUEST_ID=`echo $GIT_BRANCH | cut -d / -f 3`
+
             gem install rubocop face_control
             npm install -g coffeelint
 
