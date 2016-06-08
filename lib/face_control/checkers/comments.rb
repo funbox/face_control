@@ -13,7 +13,7 @@ module FaceControl
           file, line_num = line.split(":", 3)
           Comment.new(
             file: file,
-            line: line_num,
+            line: line_num.to_i,
             text: "Do not bury this task in code. Do it now or create a JIRA issue."
           )
         end
