@@ -6,15 +6,19 @@
 
 # Face Control
 
-Comment on added lines of pull requests in [Atlassian Stash][].
-Take comments from static checkers reports.
-(Currently supports [RuboCop][] and [CoffeeLint][].)
+Run static analysis of pull requests in [Bitbucket Server][] (formerly Stash)
+and comment on problems in added lines.
+
+Currently supports [RuboCop][] and [CoffeeLint][] and also checks for
+TODOs and FIXMEs.
 
 Inspired by [Hound][].
 
 ## Installation
 
     gem install face_control
+
+You also need to have CoffeeLint installed and available in PATH.
 
 ## Usage
 
@@ -61,7 +65,7 @@ You can also pass multiple severity levels as a comma-separated list:
     face-control -S convention,refactor <project> <repository> <pull_request_id>
 
 `face-control` uses the same configuration file (`~/.stashconfig.yml`)
-as the official [Atlassian Stash Command Line Tools][]
+as the official [Bitbucket Server Command Line Tools][]
 to connect to your Stash instance.
 
 ## Etymology
@@ -69,8 +73,8 @@ to connect to your Stash instance.
 [Face control][] in Wikipedia
 
 [Hound]: https://houndci.com
-[Atlassian Stash]: https://www.atlassian.com/software/stash
-[Atlassian Stash Command Line Tools]: https://bitbucket.org/atlassian/stash-command-line-tools
+[Bitbucket Server]: https://www.atlassian.com/software/bitbucket/server
+[Bitbucket Server Command Line Tools]: https://bitbucket.org/atlassian/bitbucket-server-cli
 [RuboCop]: http://batsov.com/rubocop/
 [CoffeeLint]: http://www.coffeelint.org
 [Jenkins]: http://jenkins-ci.org
