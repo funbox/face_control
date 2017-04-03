@@ -20,6 +20,7 @@ module Stash
       def diffs_with_added_lines
         @diff['diffs'].select do |diff|
           diff['destination'] &&
+          diff['hunks'] &&
           diff['hunks'].find do |hunk|
             hunk['segments'].find do |segment|
               segment['type'] == 'ADDED'
