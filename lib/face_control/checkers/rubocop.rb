@@ -52,7 +52,7 @@ module FaceControl
           text << " — [Guide](#{link})"
         end
 
-        text
+        text << " — #{offense['cop_name']}"
       end
 
       def style_guide_url(offense)
