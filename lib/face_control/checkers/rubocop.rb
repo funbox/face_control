@@ -52,10 +52,6 @@ module FaceControl
           text << " — [Guide](#{link})"
         end
 
-        if can_be_autocorrected?(offense)
-          text << " (Run `rubocop -a #{file['path']}` to fix.)"
-        end
-
         text
       end
 
@@ -63,10 +59,6 @@ module FaceControl
         cop_name = offense['cop_name']
         config = ::RuboCop::ConfigLoader.default_configuration
         ::RuboCop::Cop::MessageAnnotator.new(config, config.for_cop(cop_name), {}).urls.first
-      end
-
-      def can_be_autocorrected?(offense)
-        !offense['corrected'].nil?
       end
     end
   end
