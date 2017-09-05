@@ -10,7 +10,8 @@ module Stash
     end
 
     def filenames_with_added_lines
-      diff.filenames_with_added_lines
+      diff.filenames_with_added_lines unless diff.is_a?(HTTParty::Response)
+      diff
     end
 
     def add_comment(file, line, text)
@@ -48,7 +49,9 @@ module Stash
     end
 
     def diff
-      @diff ||= Diff.new(get('/diff?withComments=false'))
+      @diff_request ||= get('/diff?withComments=false')
+      return @diff_request if @diff_request.body['errors']
+      @diff ||= Diff.new(@diff_request)
     end
 
     def get(path)

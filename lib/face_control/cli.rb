@@ -14,6 +14,10 @@ module FaceControl
       logger.info('Running checkers...')
       comments = check(pull_request, ignored_severities, logger)
       return if comments.empty?
+      if comments.is_a?(HTTParty::Response)
+        logger.info 'ERROR! Authentication failed. Please check your credentials and try again.'
+        return
+      end
 
       logger.info("#{comments.size} comments have been created. Posting only those for added lines...")
       add_comments(pull_request, comments)
@@ -25,6 +29,7 @@ module FaceControl
       end
 
       filenames = pull_request.filenames_with_added_lines
+      return filenames if filenames.is_a?(HTTParty::Response)
 
       checkers = [
         FaceControl::CheckerRunner.new(FaceControl::Checkers::RuboCop, filenames, ignored_severities: ignored_severities),
