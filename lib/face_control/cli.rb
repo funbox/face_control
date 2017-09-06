@@ -15,7 +15,7 @@ module FaceControl
       comments = check(pull_request, ignored_severities, logger)
       return if comments.empty?
       if comments.is_a?(HTTParty::Response)
-        logger.info 'ERROR! Authentication failed. Please check your credentials and try again.'
+        logger.info "ERROR! #{JSON.parse(comments.body)['errors'][0]['message']}"
         return
       end
 
