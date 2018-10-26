@@ -9,7 +9,7 @@ module FaceControl
     def run
       logger = Logger.new(STDOUT)
       project, repository, pull_request_id, ignored_severities = arguments
-      pull_request = pull_request(project, repository, pull_request_id, logger)
+      pull_request = Stash::Config.new.server(logger).repository(project, repository).pull_request(pull_request_id)
 
       logger.info('Running checkers...')
       comments = check(pull_request, ignored_severities, logger)
@@ -59,15 +59,6 @@ module FaceControl
     rescue Docopt::Exit => e
       puts e.message
       exit(1)
-    end
-
-    def pull_request(project, repository, pull_request_id, logger)
-      @pull_request ||= begin
-        config = Stash::Config.new
-        server = Stash::Server.new(config.host, config.user, config.password, logger)
-        repository = server.repository(project, repository)
-        repository.pull_request(pull_request_id)
-      end
     end
   end
 end
