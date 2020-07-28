@@ -1,10 +1,10 @@
+# Face Control
+
 [![Gem Version](https://img.shields.io/gem/v/face_control.svg)](https://rubygems.org/gems/face_control)
 [![Code Climate](https://img.shields.io/codeclimate/github/vassilevsky/face_control.svg)](https://codeclimate.com/github/vassilevsky/face_control/code)
 [![Vexor](https://ci.vexor.io/projects/126da196-c8e6-46f0-8bc7-b5f8f4b49732/status.svg)](https://ci.vexor.io/ui/projects/126da196-c8e6-46f0-8bc7-b5f8f4b49732/builds)
 [![Coveralls](https://img.shields.io/coveralls/vassilevsky/face_control.svg)](https://coveralls.io/github/vassilevsky/face_control)
 [![VersionEye](https://img.shields.io/versioneye/d/ruby/face_control.svg)](https://www.versioneye.com/ruby/face_control)
-
-# Face Control
 
 Run static analysis of pull requests in [Bitbucket Server][] (formerly Stash)
 and comment on problems in added lines.
@@ -16,61 +16,75 @@ Inspired by [Hound][].
 
 ## Installation
 
-    gem install face_control
+```bash
+gem install face_control
+```
 
-You also need to have CoffeeLint installed and available in PATH.
+You also need to have CoffeeLint installed and available in `PATH`.
 
 ## Usage
 
-    face-control <project> <repository> <pull_request_id>
+```bash
+face-control <project> <repository> <pull_request_id>
+```
 
-It's natural to run this on a continuous integration server.
-For example, here's a [Jenkins][] project setup:
-
-* Source Code Management
-  * Git
-    * Repositories
-      * Refspec:
-
-              +refs/pull-requests/*:refs/remotes/origin/pull-requests/*
-
-        (make Jenkins fetch otherwise ignored Stash-created branches)
-
-    * Branches to build
-      * Branch Specifier:
-
-              origin/pull-requests/*/merge
-
-        (merge results of open non-conflicting pull requests)
-
-* Build
-  * Execute shell
-    * Command
-
-            export PULL_REQUEST_ID=`echo $GIT_BRANCH | cut -d / -f 3`
-
-            gem install rubocop face_control
-            npm install -g coffeelint
-
-            face-control <project> <repository> $PULL_REQUEST_ID
+It's natural to run this on a continuous integration server (see “[Example](#example)” below).
 
 If you don't want to receive RuboCop comments with certain severity level,
 pass the severity in the `--skip-severity` option like so:
 
-    face-control --skip-severity convention <project> <repository> <pull_request_id>
+```bash
+face-control --skip-severity convention <project> <repository> <pull_request_id>
+```
 
-You can use just `-S`.
+Instead of `--skip-severity` you can use just `-S`.
+
 You can also pass multiple severity levels as a comma-separated list:
 
-    face-control -S convention,refactor <project> <repository> <pull_request_id>
+```bash
+face-control -S convention,refactor <project> <repository> <pull_request_id>
+```
 
 `face-control` uses the same configuration file (`~/.stashconfig.yml`)
 as the official [Bitbucket Server Command Line Tools][]
 to connect to your Stash instance.
 
+## Example
+
+Here's a [Jenkins][] project setup as an example:
+
+_Source Code Management → Git → Repositories → Refspec:_
+
+```
++refs/pull-requests/*:refs/remotes/origin/pull-requests/*
+```
+
+It makes Jenkins fetch otherwise ignored Stash-created branches.
+
+_Source Code Management → Git → Branches to build → Branch Specifier:_
+
+```
+origin/pull-requests/*/merge
+```
+
+Merge results of open non-conflicting pull requests.
+
+_Build → Execute shell → Command:_
+
+```bash
+export PULL_REQUEST_ID=`echo $GIT_BRANCH | cut -d / -f 3`
+
+gem install rubocop face_control
+npm install -g coffeelint
+
+face-control <project> <repository> $PULL_REQUEST_ID
+```
+
 ## Etymology
 
-[Face control][] in Wikipedia
+[Face control][] in Wikipedia.
+
+[![Sponsored by FunBox](https://funbox.ru/badges/sponsored_by_funbox_centered.svg)](https://funbox.ru)
 
 [Hound]: https://houndci.com
 [Bitbucket Server]: https://www.atlassian.com/software/bitbucket/server
