@@ -1,18 +1,181 @@
-Metrics/LineLength:
-  Max: 120
+# Naming
 
-Style/Documentation:
-  Enabled: false
-
-Style/FileName:
+Naming/FileName:
   Exclude:
     - exe/*
 
-Style/SpaceBeforeBlockBraces:
+# Layout
+
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: false
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: false
+
+Layout/SpaceBeforeBlockBraces:
   EnforcedStyle: no_space
 
-Style/SpaceInsideBlockBraces:
+Layout/SpaceInsideBlockBraces:
   SpaceBeforeBlockParameters: false
 
-Style/SpaceInsideHashLiteralBraces:
+Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
+
+# Lint
+
+Lint/AmbiguousOperator:
+  Enabled: false
+
+Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+
+Lint/DeprecatedClassMethods:
+  Enabled: false
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/DuplicateElsifCondition:
+  Enabled: false
+
+Lint/ElseLayout:
+  Enabled: false
+
+Lint/FlipFlop:
+  Enabled: false
+
+Lint/MixedRegexpCaptureTypes:
+  Enabled: false
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: false
+
+Lint/StructNewOverride:
+  Enabled: false
+
+Lint/SuppressedException:
+  Enabled: false
+
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+
+Lint/RaiseException:
+  Enabled: false
+
+# Style
+
+Style/AccessorGrouping:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: true
+
+Style/ArrayCoercion:
+  Enabled: true
+
+Style/BisectedAttrAccessor:
+  Enabled: true
+
+Style/CaseEquality:
+  Enabled: true
+
+Style/CaseLikeIf:
+  Enabled: true
+
+Style/CharacterLiteral:
+  Enabled: true
+
+Style/CollectionMethods:
+  Enabled: true
+
+Style/CommandLiteral:
+  EnforcedStyle: percent_x
+
+Style/CommentAnnotation:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: true
+
+Style/DoubleNegation:
+  Enabled: true
+
+Style/EmptyLiteral:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/FormatString:
+  Enabled: true
+  EnforcedStyle: percent
+
+Style/FormatStringToken:
+  Enabled: true
+
+Style/GuardClause:
+  Enabled: true
+
+Style/HashAsLastArrayItem:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashLikeCase:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/IfUnlessModifier:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+
+Style/NumericPredicate:
+  EnforcedStyle: comparison
+
+Style/PercentLiteralDelimiters:
+  Enabled: true
+
+Style/PerlBackrefs:
+  Enabled: true
+
+Style/RedundantAssignment:
+  Enabled: true
+
+Style/RedundantFetchBlock:
+  Enabled: true
+
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+Style/SingleLineMethods:
+  Enabled: true
+
+Style/SignalException:
+  Enabled: true
+
+Style/SlicingWithRange:
+  Enabled: true
