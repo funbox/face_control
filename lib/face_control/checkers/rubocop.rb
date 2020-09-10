@@ -12,8 +12,10 @@ module FaceControl
       def relevant_globs
         %w(
           *.gemspec
-          *.rb
+          *.jbuilder
           *.rake
+          *.rb
+          *.ru
           Capfile
           Gemfile
           Rakefile
