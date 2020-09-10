@@ -8,6 +8,12 @@ module Stash
       fail "#{@config_file} does not exist" unless File.exist?(@config_file)
     end
 
+    def server(logger = nil)
+      Server.new(host, user, password, logger)
+    end
+
+    private
+
     def host
       config['stash_url']
     end
@@ -19,8 +25,6 @@ module Stash
     def password
       config['password']
     end
-
-    private
 
     def config
       @config ||= YAML.load_file(@config_file)
