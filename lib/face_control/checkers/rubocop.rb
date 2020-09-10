@@ -58,7 +58,7 @@ module FaceControl
       def style_guide_url(offense)
         cop_name = offense['cop_name']
         config = ::RuboCop::ConfigLoader.default_configuration
-        ::RuboCop::Cop::MessageAnnotator.new(config, config.for_cop(cop_name), {}).urls.first
+        ::RuboCop::Cop::MessageAnnotator.new(config, cop_name, config.for_cop(cop_name), {}).urls.first
       end
     end
   end
