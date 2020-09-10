@@ -3,6 +3,8 @@ require 'stash/repository'
 
 module Stash
   class Server
+    class CommunicationError < StandardError; end
+
     attr_accessor :root_uri, :user, :password, :logger
 
     def initialize(root_uri, user, password, logger = nil)
@@ -19,14 +21,18 @@ module Stash
     end
 
     def get(path)
-      logged('Response') do
-        HTTParty.get(endpoint + path, auth.merge(logging))
+      with_error_handling do
+        logged('Response') do
+          HTTParty.get(endpoint + path, auth.merge(logging))
+        end
       end
     end
 
     def post(path, data)
-      logged('Response') do
-        HTTParty.post(endpoint + path, auth.merge(content_type).merge(body: data.to_json).merge(logging))
+      with_error_handling do
+        logged('Response') do
+          HTTParty.post(endpoint + path, auth.merge(content_type).merge(body: data.to_json).merge(logging))
+        end
       end
     end
 
@@ -71,6 +77,14 @@ module Stash
         }
       else
         {}
+      end
+    end
+
+    def with_error_handling
+      yield.tap do |response|
+        unless response.success?
+          fail CommunicationError, 'Stash responded with an error'
+        end
       end
     end
   end
