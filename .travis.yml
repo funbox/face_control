@@ -1,0 +1,13 @@
+language: ruby
+
+rvm:
+- 2.7
+- 2.6
+- 2.5
+- jruby
+
+before_script:
+# https://github.com/nodesource/distributions/blob/master/README.md#installation-instructions
+- curl -sL https://deb.nodesource.com/setup_15.x | sudo -E bash -
+- sudo apt-get install -y nodejs
+- sudo npm install -g coffeelint
