@@ -24,7 +24,7 @@ module FaceControl
       end
 
       def command(filenames)
-        "rubocop --format json #{filenames}"
+        "rubocop --parallel --format json #{filenames}"
       end
 
       def parse(command_output)
