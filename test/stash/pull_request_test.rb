@@ -11,8 +11,6 @@ class PullRequestTest < Minitest::Test
     repository = server.repository('baymax', 'firmware')
     @pull_request = repository.pull_request(13)
 
-    WebMock.disable_net_connect!
-
     stub_request(:get, "#{PULL_REQUEST_ENDPOINT}/diff?withComments=false")
       .to_return(status: 200, headers: HEADERS, body: File.read('test/fixtures/diff.json'))
 
@@ -32,9 +30,5 @@ class PullRequestTest < Minitest::Test
       headers: HEADERS,
       body: '{"text":"This line is unnecessary.","anchor":{"path":"Gemfile","line":3,"lineType":"ADDED"}}'
     )
-  end
-
-  def teardown
-    WebMock.allow_net_connect!
   end
 end
