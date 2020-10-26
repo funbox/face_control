@@ -2,7 +2,7 @@ require 'test_helper'
 require 'webmock/minitest'
 
 class PullRequestTest < Minitest::Test
-  PULL_REQUEST_ENDPOINT = 'http://guest:12345@stash.local/rest/api/1.0/projects/baymax/repos/firmware/pull-requests/13'
+  PULL_REQUEST_ENDPOINT = 'http://stash.local/rest/api/1.0/projects/baymax/repos/firmware/pull-requests/13'
   HEADERS = {'Content-Type' => 'application/json'}
 
   def setup
