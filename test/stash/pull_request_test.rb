@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'webmock/minitest'
 
 class PullRequestTest < Minitest::Test
   PULL_REQUEST_ENDPOINT = 'http://guest:12345@stash.local/rest/api/1.0/projects/baymax/repos/firmware/pull-requests/13'
@@ -9,6 +10,8 @@ class PullRequestTest < Minitest::Test
     server = Stash::Server.new('http://stash.local', 'guest', '12345', logger)
     repository = server.repository('baymax', 'firmware')
     @pull_request = repository.pull_request(13)
+
+    WebMock.disable_net_connect!
 
     stub_request(:get, "#{PULL_REQUEST_ENDPOINT}/diff?withComments=false")
       .to_return(status: 200, headers: HEADERS, body: File.read('test/fixtures/diff.json'))
@@ -29,5 +32,9 @@ class PullRequestTest < Minitest::Test
       headers: HEADERS,
       body: '{"text":"This line is unnecessary.","anchor":{"path":"Gemfile","line":3,"lineType":"ADDED"}}'
     )
+  end
+
+  def teardown
+    WebMock.allow_net_connect!
   end
 end
