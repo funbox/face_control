@@ -1,6 +1,7 @@
 # Face Control
 
 [![Gem Version](https://img.shields.io/gem/v/face_control.svg)](https://rubygems.org/gems/face_control)
+[![Travis CI](https://img.shields.io/travis/com/funbox/face_control)](https://travis-ci.com/github/funbox/face_control)
 [![Coveralls](https://img.shields.io/coveralls/funbox/face_control.svg)](https://coveralls.io/github/funbox/face_control)
 
 Run static analysis of pull requests in [Bitbucket Server][] (formerly Stash)
